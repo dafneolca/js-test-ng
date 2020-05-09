@@ -61,6 +61,8 @@ import { BlankCasualComponent } from './@pages/layouts/blank-casual/blank-casual
 import { UsersComponent } from './users/users.component';
 
 import { NgxPaginationModule } from 'ngx-pagination';
+import { UserDetailsComponent } from './users/user-details/user-details.component';
+import { userFilterPipe } from './users/pipes/users-filter.pipe';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -93,7 +95,9 @@ export class AppHammerConfig extends HammerGestureConfig {
     BlankCorporateComponent,
     BlankSimplywhiteComponent,
     BlankCasualComponent,
-    UsersComponent
+    UsersComponent,
+    UserDetailsComponent,
+    userFilterPipe
   ],
   imports: [
     BrowserModule,

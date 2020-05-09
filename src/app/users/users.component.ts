@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../services/users.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -14,11 +14,12 @@ export class UsersComponent implements OnInit {
   displayedColumns: string[] = ['id', 'email', 'first_name', 'last_name', 'avatar', 'edit', 'seeProfile', 'delete'];
   p: number = 1;
 
+  userSearch;
+
   constructor(private usersService: UsersService, private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.getData();
-    // this.dataSource.paginator = this.paginator;
   }
 
   getData() {
@@ -31,9 +32,11 @@ export class UsersComponent implements OnInit {
     );
   }
 
+  clearFilter() {
+    this.userSearch = '';
+  }
+
   seeDetails(user) {
-    console.log('see details');
-    console.log(user);
     this.router.navigate([`${user.id}`], { relativeTo: this.route });
   }
 

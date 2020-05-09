@@ -1,3 +1,8 @@
+<div class="search-bar" style="display:flex">
+  <input placeholder="Search for user..." type="text" [(ngModel)]="userSearch" />
+  <button *ngIf="userSearch && userSearch.length>0" (click)="clearFilter()">Clear Filter</button>
+</div>
+
 <div class="table">
   <table class="table">
     <thead>
@@ -11,8 +16,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of userData | paginate: { itemsPerPage: 5, currentPage: p }" class="table-row"
-        (click)="seeDetails(user)">
+      <tr *ngFor="let user of userData | userFilter: userSearch | paginate: { itemsPerPage: 5, currentPage: p }"
+        class="table-row" (click)="seeDetails(user)">
         <th scope="row">{{ user.id }}</th>
         <td>{{ user.first_name }}</td>
         <td>{{ user.last_name }}</td>

@@ -1,0 +1,9 @@
+<div *ngIf="user" class="row">
+  <div class="col-xs-12">
+    <img src={{user.avatar}} alt="" class="img-responsive" style="max-height: 300px;">
+  </div>
+  <div class="col-xs-12">
+    <h1>{{user.first_name}} {{user.last_name}}</h1>
+    <p>{{user.email}}</p>
+  </div>
+</div>
