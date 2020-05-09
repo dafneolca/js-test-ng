@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../services/users.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Sort } from '@angular/material/sort';
 
 import { IUser } from './models/user.model';
 
@@ -11,12 +12,14 @@ import { IUser } from './models/user.model';
 })
 export class UsersComponent implements OnInit {
   userData: IUser[] = [];
-  displayedColumns: string[] = ['id', 'email', 'first_name', 'last_name', 'avatar', 'edit', 'seeProfile', 'delete'];
+  tableHeaders: string[] = ['#', 'First Name', 'Last Name', 'Email', 'Picture', 'Actions'];
   p: number = 1;
 
   userSearch;
 
-  constructor(private usersService: UsersService, private router: Router, private route: ActivatedRoute) {}
+  constructor(private usersService: UsersService, private router: Router, private route: ActivatedRoute) {
+    this.userData = this.userData.slice();
+  }
 
   ngOnInit() {
     this.getData();
@@ -34,6 +37,32 @@ export class UsersComponent implements OnInit {
 
   clearFilter() {
     this.userSearch = '';
+  }
+
+  sortData(sort: Sort) {
+    const data = this.userData.slice();
+    if (!sort.active || sort.direction === '') {
+      this.userData = data;
+      return;
+    }
+    this.userData = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'id':
+          return compare(a.id, b.id, isAsc);
+        case 'email':
+          return compare(a.email, b.email, isAsc);
+        case 'first_name':
+          return compare(a.first_name, b.first_name, isAsc);
+        case 'last_name':
+          return compare(a.last_name, b.last_name, isAsc);
+        default:
+          return 0;
+      }
+      function compare(a: number | string, b: number | string, isAsc: boolean) {
+        return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+      }
+    });
   }
 
   seeDetails(user) {

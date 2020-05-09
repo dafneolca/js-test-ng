@@ -63,6 +63,7 @@ import { UsersComponent } from './users/users.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { UserDetailsComponent } from './users/user-details/user-details.component';
 import { userFilterPipe } from './users/pipes/users-filter.pipe';
+import { MatSortModule } from '@angular/material/sort';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -126,7 +127,8 @@ export class AppHammerConfig extends HammerGestureConfig {
     PerfectScrollbarModule,
     pgSwitchModule,
     QuillModule.forRoot(),
-    NgxPaginationModule
+    NgxPaginationModule,
+    MatSortModule
   ],
   providers: [
     QuickviewService,
