@@ -16,10 +16,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of userData | userFilter: userSearch | paginate: { itemsPerPage: 5, currentPage: p }"
+      <tr
+        *ngFor="let user of userData | userFilter:{id: userSearch, first_name: userSearch, last_name: userSearch, email: userSearch} |paginate: { itemsPerPage: 5, currentPage: p }"
         class="table-row" (click)="seeDetails(user)">
         <th scope="row">{{ user.id }}</th>
-        <td>{{ user.first_name }}</td>
+        <td>{{ user.first_name  }}</td>
         <td>{{ user.last_name }}</td>
         <td>{{ user.email }}</td>
         <td><img src="{{ user.avatar }}" /></td>

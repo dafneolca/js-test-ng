@@ -1,13 +1,24 @@
 import { PipeTransform, Pipe } from '@angular/core';
+import { IUser } from '../models/user.model';
 
 @Pipe({ name: 'userFilter' })
 export class userFilterPipe implements PipeTransform {
-  transform(user, userSearch) {
-    console.log(user);
-    console.log(userSearch);
-    if (!user || !userSearch) {
-      return user;
+  transform(items: IUser, filter: any, defaultFilter: boolean): any {
+    if (!filter || !Array.isArray(items)) {
+      return items;
     }
-    return user.filter(user => user.first_name.toLowerCase().indexOf(userSearch.toLowerCase()) !== -1);
+    if (filter && Array.isArray(items)) {
+      let filterKeys = Object.keys(filter);
+
+      if (defaultFilter) {
+        return items.filter(item => filterKeys.reduce((x, keyName) => (x && new RegExp(filter[keyName], 'gi').test(item[keyName])) || filter[keyName] == '', true));
+      } else {
+        return items.filter(item => {
+          return filterKeys.some(keyName => {
+            return new RegExp(filter[keyName], 'gi').test(item[keyName]) || filter[keyName] == '';
+          });
+        });
+      }
+    }
   }
 }
