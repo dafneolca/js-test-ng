@@ -26,8 +26,6 @@ export class UserDetailsComponent implements OnInit {
         console.log(res);
         this.user = res['data'];
         console.log(this.user);
-        // this.userData = Object.values(res['data']);
-        // console.log(res);
       },
       err => console.log(err)
     );

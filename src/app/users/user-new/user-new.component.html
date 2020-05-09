@@ -6,16 +6,22 @@
         <div class="form-group">
           <label for="first-name">First Name</label>
           <input type="text" id="first-name" class="form-control" formControlName="first-name" />
+          <span *ngIf="!newUserForm.get('first-name').valid && newUserForm.get('first-name').touched"
+            class="help-block">Please enter a first name</span>
         </div>
         <div class="form-group">
           <label for="last-name">Last Name</label>
           <input type="text" id="last-name" class="form-control" formControlName="last-name" />
+          <span *ngIf="!newUserForm.get('last-name').valid && newUserForm.get('last-name').touched"
+            class="help-block">Please enter a last name</span>
         </div>
         <div class="form-group">
           <label for="email">Email</label>
           <input type="text" id="email" class="form-control" formControlName="email" />
+          <span *ngIf="!newUserForm.get('email').valid && newUserForm.get('email').touched" class="help-block">Please
+            enter a valid email</span>
         </div>
-        <button class="btn btn-primary" type="submit">Submit</button>
+        <button class="btn btn-primary" type="submit" [disabled]="!newUserForm.valid">Submit</button>
       </form>
     </div>
   </div>

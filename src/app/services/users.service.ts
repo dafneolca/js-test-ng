@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { IUser } from '../users/models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,19 +19,13 @@ export class UsersService {
     return this.http.get(`${this.apiUrl}/api/users/${id}`);
   }
 
+  addUser(user: IUser) {
+    console.log(user);
+    return this.http.post(`${this.apiUrl}/api/users`, user);
+  }
+
   deleteUser(id) {
     console.log(id);
     return this.http.delete(`${this.apiUrl}/api/users/${id}`);
-  }
-
-  error(error: HttpErrorResponse) {
-    let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
-      errorMessage = error.error.message;
-    } else {
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    console.log(errorMessage);
-    return throwError(errorMessage);
   }
 }
