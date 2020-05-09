@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 //Routing
 import { AppRoutes } from './app.routing';
@@ -64,6 +65,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { UserDetailsComponent } from './users/user-details/user-details.component';
 import { userFilterPipe } from './users/pipes/users-filter.pipe';
 import { MatSortModule } from '@angular/material/sort';
+import { UserNewComponent } from './users/user-new/user-new.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -98,7 +100,8 @@ export class AppHammerConfig extends HammerGestureConfig {
     BlankCasualComponent,
     UsersComponent,
     UserDetailsComponent,
-    userFilterPipe
+    userFilterPipe,
+    UserNewComponent
   ],
   imports: [
     BrowserModule,
@@ -128,7 +131,8 @@ export class AppHammerConfig extends HammerGestureConfig {
     pgSwitchModule,
     QuillModule.forRoot(),
     NgxPaginationModule,
-    MatSortModule
+    MatSortModule,
+    ReactiveFormsModule
   ],
   providers: [
     QuickviewService,

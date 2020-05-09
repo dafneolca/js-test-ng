@@ -39,6 +39,10 @@ export class UsersComponent implements OnInit {
     this.userSearch = '';
   }
 
+  onCreateNewUser() {
+    this.router.navigate(['new'], { relativeTo: this.route });
+  }
+
   sortData(sort: Sort) {
     const data = this.userData.slice();
     if (!sort.active || sort.direction === '') {

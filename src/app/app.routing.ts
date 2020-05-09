@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { UsersComponent } from './users/users.component';
 import { UserDetailsComponent } from './users/user-details/user-details.component';
+import { UserNewComponent } from './users/user-new/user-new.component';
 //Layouts
 import {
   CondensedComponent,
@@ -19,6 +20,10 @@ export const AppRoutes: Routes = [
   {
     path: 'users',
     component: UsersComponent
+  },
+  {
+    path: 'users/new',
+    component: UserNewComponent
   },
   {
     path: 'users/:id',

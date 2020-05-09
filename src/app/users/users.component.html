@@ -1,3 +1,6 @@
+<div class="new-user">
+  <button class="btn btn-primary" (click)="onCreateNewUser()">Create New User</button>
+</div>
 <div class="search-bar" style="display: flex;">
   <input placeholder="Search for user..." type="text" [(ngModel)]="userSearch" />
   <button *ngIf="userSearch && userSearch.length > 0" (click)="clearFilter()">Clear Filter</button>
