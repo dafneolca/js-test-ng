@@ -1,36 +1,57 @@
-<div class="new-user">
-  <button class="btn btn-primary" (click)="onCreateNewUser()">Create New User</button>
-</div>
-<div class="search-bar" style="display: flex;">
-  <input placeholder="Search for user..." type="text" [(ngModel)]="userSearch" />
-  <button *ngIf="userSearch && userSearch.length > 0" (click)="clearFilter()">Clear Filter</button>
-</div>
+<div class="dashboard">
+  <div class="dashboard-header">
+    <h2>
+      <fa-icon [icon]="faUsers"></fa-icon> Users
+    </h2>
+    <div class="row header-options">
+      <div class="col">
+        <input placeholder="Search for user..." type="text" [(ngModel)]="userSearch" />
+        <fa-icon class="search-icon" [icon]="faSearch"></fa-icon>
+        <button class="btn btn-secondary" (click)="clearFilter()" [disabled]="!userSearch">Clear</button>
+      </div>
+      <div class="col">
+        <div class="new-user">
+          <button class="btn btn-primary" (click)="onCreateNewUser()">
+            <fa-icon [icon]="faPlusCircle"></fa-icon> New User
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<div class="table">
-  <table class="table" matSort (matSortChange)="sortData($event)">
-    <thead>
-      <tr>
-        <!-- <th *ngFor="let header of tableHeaders" mat-sort-header="{{header.id}} !== 'picture' ? {{header.id}} : null"
-          scope="col">{{header.name}}</th> -->
-        <th mat-sort-header="id" scope="col">#</th>
-        <th mat-sort-header="first_name" scope="col">First Name</th>
-        <th mat-sort-header="last_name" scope="col">Last Name</th>
-        <th mat-sort-header="email" scope="col">Email</th>
-        <th scope="col">Picture</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="
-          let user of userData | userFilter: { id: userSearch, first_name: userSearch, last_name: userSearch, email: userSearch } | paginate: { itemsPerPage: 5, currentPage: page }
-        " class="table-row" (click)="seeDetails(user)">
-        <th scope="row">{{ user.id }}</th>
-        <td>{{ user.first_name }}</td>
-        <td>{{ user.last_name }}</td>
-        <td>{{ user.email }}</td>
-        <td><img src="{{ user.avatar }}" /></td>
-        <button class="btn btn-primary" (click)="onEdit(user)"><i class="fas fa-edit"></i> Edit</button>
-      </tr>
-    </tbody>
-  </table>
-  <pagination-controls (pageChange)="page = $event"></pagination-controls>
+  <div class="table">
+    <table class="table" matSort (matSortChange)="sortData($event)">
+      <thead>
+        <tr>
+          <th mat-sort-header="id" scope="col">ID</th>
+          <th mat-sort-header="first_name" scope="col">First Name</th>
+          <th mat-sort-header="last_name" scope="col">Last Name</th>
+          <th mat-sort-header="email" scope="col">Email</th>
+          <th scope="col">Picture</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="
+            let user of userData
+              | userFilter: { id: userSearch, first_name: userSearch, last_name: userSearch, email: userSearch }
+              | paginate: { itemsPerPage: 5, currentPage: page }
+          " class="table-row" (click)="seeDetails(user)">
+          <th scope="row">{{ user.id }}</th>
+          <td>{{ user.first_name }}</td>
+          <td>{{ user.last_name }}</td>
+          <td>{{ user.email }}</td>
+          <td><img src="{{ user.avatar }}" /></td>
+          <td>
+            <button class="btn btn-primary" (click)="onEdit(user)">
+              <fa-icon [icon]="faEdit"></fa-icon> Edit
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="paginator">
+      <pagination-controls (pageChange)="page = $event"></pagination-controls>
+    </div>
+  </div>
 </div>

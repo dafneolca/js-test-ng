@@ -3,6 +3,7 @@ import { UsersService } from '../services/users.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Sort } from '@angular/material/sort';
 import { IUser, ITableHeaders } from './models/user.model';
+import { faUsers, faSearch, faPlusCircle, faEdit } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-users',
@@ -39,6 +40,11 @@ export class UsersComponent implements OnInit {
   statusCode: number;
 
   dataPages: number;
+
+  faUsers = faUsers;
+  faSearch = faSearch;
+  faPlusCircle = faPlusCircle;
+  faEdit = faEdit;
 
   constructor(private usersService: UsersService, private router: Router, private route: ActivatedRoute) {
     this.userData = this.userData.slice();

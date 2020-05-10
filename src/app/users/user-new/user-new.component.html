@@ -1,6 +1,12 @@
-<div class="container" style="padding: 30px 0; margin: auto">
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/users">Users</a></li>
+    <li class="breadcrumb-item active" aria-current="page">New User</li>
+  </ol>
+</nav>
+<div class="container">
   <div class="row">
-    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+    <div class="col-xs-12 col-sm-10 col-md-4" *ngIf="!postStatus">
       <h1>Add a new user</h1>
       <form [formGroup]="newUserForm" (ngSubmit)="onSubmit()" *ngIf="!postStatus">
         <div class="form-group">
@@ -23,8 +29,10 @@
         </div>
         <button class="btn btn-primary" type="submit" [disabled]="!newUserForm.valid">Submit</button>
       </form>
-      <div *ngIf="postStatus===201">User Successfully Submitted!</div>
-      <a routerLink="/users">back</a>
+    </div>
+    <div *ngIf="postStatus===201">
+      <h1>User Successfully Submitted!</h1>
+      <button class="btn btn-primary"><a routerLink="/users">Users</a></button>
     </div>
   </div>
 </div>

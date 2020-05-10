@@ -58,6 +58,7 @@ import { userFilterPipe } from './users/pipes/users-filter.pipe';
 import { MatSortModule } from '@angular/material/sort';
 import { UserNewComponent } from './users/user-new/user-new.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -125,7 +126,8 @@ export class AppHammerConfig extends HammerGestureConfig {
     QuillModule.forRoot(),
     NgxPaginationModule,
     MatSortModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FontAwesomeModule
   ],
   providers: [
     QuickviewService,
