@@ -31,18 +31,9 @@ import { pgCardModule } from './@pages/components/card/card.module';
 import { pgCardSocialModule } from './@pages/components/card-social/card-social.module';
 
 //Basic Bootstrap Modules
-import {
-  BsDropdownModule,
-  AccordionModule,
-  AlertModule,
-  ButtonsModule,
-  CollapseModule,
-  ModalModule,
-  ProgressbarModule,
-  TabsModule,
-  TooltipModule,
-  TypeaheadModule
-} from 'ngx-bootstrap';
+import { BsDropdownModule, AccordionModule, AlertModule, ButtonsModule, CollapseModule, ProgressbarModule, TabsModule, TooltipModule, TypeaheadModule } from 'ngx-bootstrap';
+
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 //Pages Globaly required Components - Optional
 import { pgTabsModule } from './@pages/components/tabs/tabs.module';
@@ -66,6 +57,7 @@ import { UserDetailsComponent } from './users/user-details/user-details.componen
 import { userFilterPipe } from './users/pipes/users-filter.pipe';
 import { MatSortModule } from '@angular/material/sort';
 import { UserNewComponent } from './users/user-new/user-new.component';
+import { UserEditComponent } from './users/user-edit/user-edit.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -101,7 +93,8 @@ export class AppHammerConfig extends HammerGestureConfig {
     UsersComponent,
     UserDetailsComponent,
     userFilterPipe,
-    UserNewComponent
+    UserNewComponent,
+    UserEditComponent
   ],
   imports: [
     BrowserModule,

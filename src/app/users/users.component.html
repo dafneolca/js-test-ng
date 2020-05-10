@@ -10,32 +10,27 @@
   <table class="table" matSort (matSortChange)="sortData($event)">
     <thead>
       <tr>
+        <!-- <th *ngFor="let header of tableHeaders" mat-sort-header="{{header.id}} !== 'picture' ? {{header.id}} : null"
+          scope="col">{{header.name}}</th> -->
         <th mat-sort-header="id" scope="col">#</th>
         <th mat-sort-header="first_name" scope="col">First Name</th>
         <th mat-sort-header="last_name" scope="col">Last Name</th>
         <th mat-sort-header="email" scope="col">Email</th>
         <th scope="col">Picture</th>
-        <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr
-        *ngFor="
-          let user of userData | userFilter: { id: userSearch, first_name: userSearch, last_name: userSearch, email: userSearch } | paginate: { itemsPerPage: 5, currentPage: p }
-        "
-        class="table-row"
-        (click)="seeDetails(user)"
-      >
+      <tr *ngFor="
+          let user of userData | userFilter: { id: userSearch, first_name: userSearch, last_name: userSearch, email: userSearch } | paginate: { itemsPerPage: 5, currentPage: page }
+        " class="table-row" (click)="seeDetails(user)">
         <th scope="row">{{ user.id }}</th>
         <td>{{ user.first_name }}</td>
         <td>{{ user.last_name }}</td>
         <td>{{ user.email }}</td>
         <td><img src="{{ user.avatar }}" /></td>
-        <td>
-          <button class="btn btn-primary"><i class="fas fa-edit"></i> Edit</button><button class="btn btn-danger">Delete</button>
-        </td>
+        <button class="btn btn-primary" (click)="onEdit(user)"><i class="fas fa-edit"></i> Edit</button>
       </tr>
     </tbody>
   </table>
-  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  <pagination-controls (pageChange)="page = $event"></pagination-controls>
 </div>

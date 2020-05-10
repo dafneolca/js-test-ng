@@ -11,7 +11,7 @@ export class UserNewComponent implements OnInit {
   constructor(private usersService: UsersService) {}
 
   newUserForm: FormGroup;
-  username = new FormControl('');
+  postStatus: number;
 
   ngOnInit() {
     this.newUserForm = new FormGroup({
@@ -22,30 +22,13 @@ export class UserNewComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.newUserForm);
-    console.log('submitting');
     this.usersService.addUser(this.newUserForm.value).subscribe(
       res => {
-        console.log(res);
+        this.postStatus = res.status;
       },
       err => {
         console.log(err);
       }
     );
   }
-
-  // ASYNC FOR BE CALL
-  // duplicateEmail(control: FormControl): Promise<any> | Observable<any>{
-  //   const promise = new Promise<any>((res, rej) => {
-  //     setTimeout(()=> {
-  //       if (control.value === 'test@test.com') {
-  //         resolve({'emailIsForbitten'})
-  //       }
-  //       else {
-  //         resolve(null)
-  //       }
-  //     })
-  //   })
-  //   return promise
-  // }
 }

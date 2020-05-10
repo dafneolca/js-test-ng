@@ -1,8 +1,10 @@
-<div class="container" style="padding: 30px 0; margin: auto">
+<div *ngIf="newUserForm && !postStatus" class="container" style="padding:30px">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <h1>Add a new user</h1>
-      <form [formGroup]="newUserForm" (ngSubmit)="onSubmit()" *ngIf="!postStatus">
+      <img src={{user.avatar}} alt="profile pic" class="img-responsive">
+    </div>
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <form [formGroup]="newUserForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="first-name">First Name</label>
           <input type="text" id="first-name" class="form-control" formControlName="first-name" />
@@ -21,10 +23,19 @@
           <span *ngIf="!newUserForm.get('email').valid && newUserForm.get('email').touched" class="help-block">Please
             enter a valid email</span>
         </div>
-        <button class="btn btn-primary" type="submit" [disabled]="!newUserForm.valid">Submit</button>
+        <button class="btn btn-outline-secondary" (click)="onCancel()">Cancel</button>
+        <button class="btn btn-primary" type="submit" [disabled]="!newUserForm.valid">Save</button>
       </form>
-      <div *ngIf="postStatus===201">User Successfully Submitted!</div>
-      <a routerLink="/users">back</a>
     </div>
   </div>
+</div>
+
+
+<div *ngIf="postStatus===200">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <h3>User Successfully Updated</h3>
+    </div>
+  </div>
+
 </div>

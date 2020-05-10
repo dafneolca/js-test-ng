@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../services/users.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Sort } from '@angular/material/sort';
-
-import { IUser } from './models/user.model';
+import { IUser, ITableHeaders } from './models/user.model';
 
 @Component({
   selector: 'app-users',
@@ -12,26 +11,56 @@ import { IUser } from './models/user.model';
 })
 export class UsersComponent implements OnInit {
   userData: IUser[] = [];
-  tableHeaders: string[] = ['#', 'First Name', 'Last Name', 'Email', 'Picture', 'Actions'];
-  p: number = 1;
+  tableHeaders: ITableHeaders[] = [
+    {
+      name: '#',
+      id: 'id'
+    },
+    {
+      name: 'First Name',
+      id: 'first_name'
+    },
+    {
+      name: 'Last Name',
+      id: 'last_name'
+    },
+    {
+      name: 'Email',
+      id: 'email'
+    },
+    {
+      name: 'Picture',
+      id: 'picture'
+    }
+  ];
 
-  userSearch;
+  page: number = 1;
+  userSearch: string;
+  statusCode: number;
+
+  dataPages: number;
 
   constructor(private usersService: UsersService, private router: Router, private route: ActivatedRoute) {
     this.userData = this.userData.slice();
   }
 
   ngOnInit() {
+    this.usersService.getUsers().subscribe(
+      result => {
+        this.dataPages = result['total_pages'];
+        console.log(this.dataPages);
+      },
+      err => (this.statusCode = err)
+    );
     this.getData();
   }
 
   getData() {
     this.usersService.getUsers().subscribe(
-      res => {
-        this.userData = Object.values(res['data']);
-        console.log(res);
+      result => {
+        this.userData = Object.values(result['data']);
       },
-      err => console.log(err)
+      err => (this.statusCode = err)
     );
   }
 
@@ -73,18 +102,7 @@ export class UsersComponent implements OnInit {
     this.router.navigate([`${user.id}`], { relativeTo: this.route });
   }
 
-  onEdit() {
-    console.log('edit');
-  }
-
-  onDelete(id) {
-    console.log('id:', id);
-    console.log('delete');
-    this.usersService.deleteUser(id).subscribe(
-      res => {
-        console.log(res);
-      },
-      err => console.log(err)
-    );
+  onEdit(user) {
+    this.router.navigate([`${user.id}/edit`], { relativeTo: this.route });
   }
 }

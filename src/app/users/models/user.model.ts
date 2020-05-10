@@ -5,3 +5,8 @@ export interface IUser {
   last_name: string;
   avatar: string;
 }
+
+export interface ITableHeaders {
+  id: string;
+  name: string;
+}
