@@ -32,11 +32,6 @@ export class UsersComponent implements OnInit {
   faPlusCircle = faPlusCircle;
   faEdit = faEdit;
 
-  pager = {};
-  pageOfItems = [];
-
-  _url: string = 'https://reqres.in/api/users';
-
   constructor(private usersService: UsersService, private router: Router, private route: ActivatedRoute, private http: HttpClient) {
     this.userData = this.userData.slice();
   }
@@ -50,18 +45,16 @@ export class UsersComponent implements OnInit {
       },
       err => console.log(err)
     );
-    this.getData(this._url, this.userData);
+    this.getData(this.userData);
   }
 
-  getData(url, users, page?) {
-    url = `${url}?page=${page}`;
-    this.http.get(url).subscribe(data => {
+  getData(users, page?) {
+    this.usersService.getUsers(page).subscribe(data => {
       users = users.concat(data['data']);
       if (data['page'] < data['total_pages']) {
-        this.getData(this._url, users, data['page'] + 1);
+        this.getData(users, data['page'] + 1);
       }
       this.userData = users;
-      console.log(this.userData);
     });
   }
 

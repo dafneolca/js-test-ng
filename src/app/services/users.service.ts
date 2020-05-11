@@ -32,8 +32,8 @@ export class UsersService {
     return this.http.get<any>(`${this.apiUrl}/api/users`);
   }
 
-  getUsers(): Observable<IUser[]> {
-    return null;
+  getUsers(page: number): Observable<IUser[]> {
+    return this.http.get<any>(`${this.apiUrl}/api/users?page=${page}`);
   }
 
   // getUsers(currentPage: number): Observable<IUser[]> {
