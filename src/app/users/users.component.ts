@@ -43,19 +43,27 @@ export class UsersComponent implements OnInit {
         this.uItemsPerPage = result['per_page'];
         this.totalPages = result['total_pages'];
       },
-      err => console.log(err)
+      err => {
+        console.log(err);
+        return err;
+      }
     );
     this.getData(this.userData);
   }
 
   getData(users, page?) {
-    this.usersService.getUsers(page).subscribe(data => {
-      users = users.concat(data['data']);
-      if (data['page'] < data['total_pages']) {
-        this.getData(users, data['page'] + 1);
+    this.usersService.getUsers(page).subscribe(
+      data => {
+        users = users.concat(data['data']);
+        if (data['page'] < data['total_pages']) {
+          this.getData(users, data['page'] + 1);
+        }
+        this.userData = users;
+      },
+      err => {
+        return err;
       }
-      this.userData = users;
-    });
+    );
   }
 
   pageChanged(e) {

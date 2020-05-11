@@ -24,10 +24,12 @@ export class UserNewComponent implements OnInit {
   onSubmit() {
     this.usersService.addUser(this.newUserForm.value).subscribe(
       res => {
+        console.log(res);
         this.postStatus = res.status;
       },
       err => {
         console.log(err);
+        return err;
       }
     );
   }

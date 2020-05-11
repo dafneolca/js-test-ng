@@ -59,6 +59,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { UserNewComponent } from './users/user-new/user-new.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -95,7 +96,8 @@ export class AppHammerConfig extends HammerGestureConfig {
     UserDetailsComponent,
     userFilterPipe,
     UserNewComponent,
-    UserEditComponent
+    UserEditComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

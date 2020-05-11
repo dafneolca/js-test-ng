@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { map, catchError, tap } from 'rxjs/operators';
+import { map, catchError, retry } from 'rxjs/operators';
 
 import { IUser } from '../users/models/user.model';
 
@@ -14,9 +14,29 @@ export class UsersService {
 
   constructor(private http: HttpClient) {}
 
-  // DOUBLE CHECK OBSERVABLE RETURN
+  getPageSettings() {
+    return this.http.get<any>(`${this.apiUrl}/api/users`).pipe(
+      map(res => {
+        return res;
+      }),
+      catchError(this.handleError)
+    );
+  }
+
+  getUser(id: number): Observable<IUser> {
+    return this.http.get<IUser>(`${this.apiUrl}/api/users/${id}`);
+  }
+
+  getUsers(page: number): Observable<IUser[]> {
+    return this.http.get<any>(`${this.apiUrl}/api/users?page=${page}`).pipe(
+      map(res => {
+        return res;
+      }),
+      catchError(this.handleError)
+    );
+  }
+
   addUser(user: IUser): Observable<any> {
-    console.log(user);
     return this.http
       .post<IUser>(`${this.apiUrl}/api/users`, user, {
         headers: this.httpHeaders,
@@ -26,32 +46,6 @@ export class UsersService {
         map(res => res),
         catchError(this.handleError)
       );
-  }
-
-  getPageSettings() {
-    return this.http.get<any>(`${this.apiUrl}/api/users`);
-  }
-
-  getUsers(page: number): Observable<IUser[]> {
-    return this.http.get<any>(`${this.apiUrl}/api/users?page=${page}`);
-  }
-
-  // getUsers(currentPage: number): Observable<IUser[]> {
-  //   return this.http.get<IUser[]>(`${this.apiUrl}/api/users?page=${currentPage}`).pipe(
-  //     tap(res => res),
-  //     catchError(this.handleError)
-  //   );
-  // }
-
-  // getUsersNew(page) {
-  //   return this.http.get<IUser[]>(`${this.apiUrl}/api/users?page=${page}`).pipe(
-  //     tap(res => res),
-  //     catchError(this.handleError)
-  //   );
-  // }
-
-  getUser(id: number): Observable<IUser> {
-    return this.http.get<IUser>(`${this.apiUrl}/api/users/${id}`);
   }
 
   updateUser(user: IUser) {
@@ -66,16 +60,15 @@ export class UsersService {
       );
   }
 
-  // TODO: CHECK
-  deleteUser(id: number): Observable<number> {
-    console.log('id: ', id);
-    return this.http.delete<number>(`${this.apiUrl}/api/users/${id}`).pipe(
-      tap(status => {
-        console.log(status);
-        return status;
-      }),
-      catchError(this.handleError)
-    );
+  deleteUser(id: number): Observable<any> {
+    return this.http
+      .delete<any>(`${this.apiUrl}/api/users/${id}`, {
+        observe: 'response'
+      })
+      .pipe(
+        map(res => res),
+        catchError(this.handleError)
+      );
   }
 
   private handleError(error: any) {

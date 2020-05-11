@@ -1,7 +1,7 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a routerLink="/users">Users</a></li>
-    <li class="breadcrumb-item active" aria-current="page">{{user.first_name}} {{user.last_name}}</li>
+    <li *ngIf="user" class="breadcrumb-item active" aria-current="page">{{user.first_name}} {{user.last_name}}</li>
   </ol>
 </nav>
 <div *ngIf="user" class="container">

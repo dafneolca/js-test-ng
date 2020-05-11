@@ -3,6 +3,7 @@ import { UsersComponent } from './users/users.component';
 import { UserDetailsComponent } from './users/user-details/user-details.component';
 import { UserNewComponent } from './users/user-new/user-new.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 //Layouts
 import {
   CondensedComponent,
@@ -34,7 +35,7 @@ export const AppRoutes: Routes = [
     path: 'users/:id/edit',
     component: UserEditComponent
   },
-  { path: '**', component: UsersComponent }
+  { path: '**', component: PageNotFoundComponent }
 
   // {
   //   path: '',

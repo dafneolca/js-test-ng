@@ -21,7 +21,6 @@ export class UserEditComponent implements OnInit {
 
   ngOnInit() {
     this.userID = this.route.snapshot.params['id'];
-    console.log(this.user);
     if (this.userID) {
       this.getData();
     }
@@ -39,7 +38,10 @@ export class UserEditComponent implements OnInit {
       res => {
         this.user = res['data'];
       },
-      err => console.log(err)
+      err => {
+        console.log(err);
+        return err;
+      }
     );
   }
 
@@ -55,6 +57,7 @@ export class UserEditComponent implements OnInit {
       },
       err => {
         console.log(err);
+        return err;
       }
     );
   }
