@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../services/users.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Sort } from '@angular/material/sort';
-import { IUser, ITableHeaders } from './models/user.model';
+import { IUser } from './models/user.model';
+import { tableHeaders } from './table-headers';
 import { faUsers, faSearch, faPlusCircle, faEdit } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -12,35 +13,18 @@ import { faUsers, faSearch, faPlusCircle, faEdit } from '@fortawesome/free-solid
 })
 export class UsersComponent implements OnInit {
   userData: IUser[] = [];
-  tableHeaders: ITableHeaders[] = [
-    {
-      name: '#',
-      id: 'id'
-    },
-    {
-      name: 'First Name',
-      id: 'first_name'
-    },
-    {
-      name: 'Last Name',
-      id: 'last_name'
-    },
-    {
-      name: 'Email',
-      id: 'email'
-    },
-    {
-      name: 'Picture',
-      id: 'picture'
-    }
-  ];
-
-  page: number = 1;
   userSearch: string;
+
+  uItemsPerPage: number;
+  uTotalItems: number;
+  totalPages: number;
+  page: number = 1;
+
   statusCode: number;
 
-  dataPages: number;
+  tableHeaders = tableHeaders;
 
+  // fa icons
   faUsers = faUsers;
   faSearch = faSearch;
   faPlusCircle = faPlusCircle;
@@ -51,23 +35,34 @@ export class UsersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.usersService.getUsers().subscribe(
+    this.usersService.getPageSettings().subscribe(
       result => {
-        this.dataPages = result['total_pages'];
-        console.log(this.dataPages);
+        this.uTotalItems = result['total'];
+        this.uItemsPerPage = result['per_page'];
+        this.totalPages = result['total_pages'];
       },
-      err => (this.statusCode = err)
+      err => console.log(err)
     );
     this.getData();
   }
 
   getData() {
-    this.usersService.getUsers().subscribe(
+    this.usersService.getUsers(this.page).subscribe(
       result => {
         this.userData = Object.values(result['data']);
       },
       err => (this.statusCode = err)
     );
+  }
+
+  onSearchInput(e) {
+    console.log(e);
+    console.log(this.totalPages);
+  }
+
+  pageChanged(e) {
+    this.page = e;
+    this.getData();
   }
 
   clearFilter() {

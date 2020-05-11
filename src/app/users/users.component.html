@@ -5,7 +5,8 @@
     </h2>
     <div class="row header-options">
       <div class="col">
-        <input placeholder="Search for user..." type="text" [(ngModel)]="userSearch" />
+        <input placeholder="Search for user..." type="text" [(ngModel)]="userSearch"
+          (input)="onSearchInput($event.target.value)" />
         <fa-icon class="search-icon" [icon]="faSearch"></fa-icon>
         <button class="btn btn-secondary" (click)="clearFilter()" [disabled]="!userSearch">Clear</button>
       </div>
@@ -35,7 +36,7 @@
         <tr *ngFor="
             let user of userData
               | userFilter: { id: userSearch, first_name: userSearch, last_name: userSearch, email: userSearch }
-              | paginate: { itemsPerPage: 5, currentPage: page }
+              | paginate: { itemsPerPage: uItemsPerPage, currentPage: page, totalItems: uTotalItems }
           " class="table-row" (click)="seeDetails(user)">
           <th scope="row">{{ user.id }}</th>
           <td>{{ user.first_name }}</td>
@@ -51,7 +52,8 @@
       </tbody>
     </table>
     <div class="paginator">
-      <pagination-controls (pageChange)="page = $event"></pagination-controls>
+      <pagination-controls (pageChange)="pageChanged($event)">
+      </pagination-controls>
     </div>
   </div>
 </div>

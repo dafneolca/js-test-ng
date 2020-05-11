@@ -12,13 +12,6 @@ export class UsersService {
   apiUrl: string = 'https://reqres.in';
   httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-  headers = {
-    'Content-Type': 'application/json',
-    'Access-Control-Origin': '*'
-  };
-
-  pages: number;
-
   constructor(private http: HttpClient) {}
 
   // DOUBLE CHECK OBSERVABLE RETURN
@@ -35,8 +28,12 @@ export class UsersService {
       );
   }
 
-  getUsers(): Observable<IUser[]> {
-    return this.http.get<IUser[]>(`${this.apiUrl}/api/users`).pipe(
+  getPageSettings() {
+    return this.http.get<any>(`${this.apiUrl}/api/users`);
+  }
+
+  getUsers(currentPage: number): Observable<IUser[]> {
+    return this.http.get<IUser[]>(`${this.apiUrl}/api/users?page=${currentPage}`).pipe(
       tap(res => res),
       catchError(this.handleError)
     );
@@ -57,20 +54,6 @@ export class UsersService {
         catchError(this.handleError)
       );
   }
-
-  // updateArticle(article: Article): Observable<number> {
-  //   let httpHeaders = new HttpHeaders({
-  //     'Content-Type': 'application/json'
-  //   });
-  //   return this.http.put<Article>(this.articleUrl + "/" + article.id, article, {
-  //     headers: httpHeaders,
-  //     observe: 'response'
-  //   }
-  //   ).pipe(
-  //     map(res => res.status),
-  //     catchError(this.handleError)
-  //   );
-  // }
 
   // TODO: CHECK
   deleteUser(id: number): Observable<number> {
