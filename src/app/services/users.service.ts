@@ -32,12 +32,23 @@ export class UsersService {
     return this.http.get<any>(`${this.apiUrl}/api/users`);
   }
 
-  getUsers(currentPage: number): Observable<IUser[]> {
-    return this.http.get<IUser[]>(`${this.apiUrl}/api/users?page=${currentPage}`).pipe(
-      tap(res => res),
-      catchError(this.handleError)
-    );
+  getUsers(): Observable<IUser[]> {
+    return null;
   }
+
+  // getUsers(currentPage: number): Observable<IUser[]> {
+  //   return this.http.get<IUser[]>(`${this.apiUrl}/api/users?page=${currentPage}`).pipe(
+  //     tap(res => res),
+  //     catchError(this.handleError)
+  //   );
+  // }
+
+  // getUsersNew(page) {
+  //   return this.http.get<IUser[]>(`${this.apiUrl}/api/users?page=${page}`).pipe(
+  //     tap(res => res),
+  //     catchError(this.handleError)
+  //   );
+  // }
 
   getUser(id: number): Observable<IUser> {
     return this.http.get<IUser>(`${this.apiUrl}/api/users/${id}`);

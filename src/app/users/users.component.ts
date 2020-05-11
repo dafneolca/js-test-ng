@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../services/users.service';
+import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Sort } from '@angular/material/sort';
 import { IUser } from './models/user.model';
@@ -13,6 +14,7 @@ import { faUsers, faSearch, faPlusCircle, faEdit } from '@fortawesome/free-solid
 })
 export class UsersComponent implements OnInit {
   userData: IUser[] = [];
+  filteredUserData: IUser[] = [];
   userSearch: string;
 
   uItemsPerPage: number;
@@ -30,7 +32,12 @@ export class UsersComponent implements OnInit {
   faPlusCircle = faPlusCircle;
   faEdit = faEdit;
 
-  constructor(private usersService: UsersService, private router: Router, private route: ActivatedRoute) {
+  pager = {};
+  pageOfItems = [];
+
+  _url: string = 'https://reqres.in/api/users';
+
+  constructor(private usersService: UsersService, private router: Router, private route: ActivatedRoute, private http: HttpClient) {
     this.userData = this.userData.slice();
   }
 
@@ -43,26 +50,23 @@ export class UsersComponent implements OnInit {
       },
       err => console.log(err)
     );
-    this.getData();
+    this.getData(this._url, this.userData);
   }
 
-  getData() {
-    this.usersService.getUsers(this.page).subscribe(
-      result => {
-        this.userData = Object.values(result['data']);
-      },
-      err => (this.statusCode = err)
-    );
-  }
-
-  onSearchInput(e) {
-    console.log(e);
-    console.log(this.totalPages);
+  getData(url, users, page?) {
+    url = `${url}?page=${page}`;
+    this.http.get(url).subscribe(data => {
+      users = users.concat(data['data']);
+      if (data['page'] < data['total_pages']) {
+        this.getData(this._url, users, data['page'] + 1);
+      }
+      this.userData = users;
+      console.log(this.userData);
+    });
   }
 
   pageChanged(e) {
     this.page = e;
-    this.getData();
   }
 
   clearFilter() {
