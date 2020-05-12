@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from '../../services/users.service';
+import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-user-new',
@@ -12,6 +13,7 @@ export class UserNewComponent implements OnInit {
 
   newUserForm: FormGroup;
   postStatus: number;
+  faUserPlus = faUserPlus;
 
   ngOnInit() {
     this.newUserForm = new FormGroup({

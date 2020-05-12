@@ -17,16 +17,12 @@
             "tsConfig": "src/tsconfig.app.json",
             "polyfills": "src/polyfills.ts",
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "src/app/@pages/styles",
-                "src/pages_ui/scss"
-              ]
+              "includePaths": ["src/pages_ui/scss"]
             },
-            "assets": [
-              "src/assets",
-              "src/favicon.ico"
-            ],
+            "assets": ["src/assets", "src/favicon.ico"],
             "styles": [
+              "src/styles.css",
+              "src/executive/pages/css/themes/corporate.css",
               "src/assets/plugins/bootstrap/css/bootstrap.min.css",
               "src/assets/plugins/font-awesome/css/font-awesome.min.css",
               "src/assets/plugins/codrops-stepsform/css/component.css"
@@ -34,7 +30,6 @@
             "scripts": [
               "node_modules/scrollreveal/dist/scrollreveal.js",
               "node_modules/echarts/dist/echarts.min.js",
-              "src/app/@pages/assets/javascript/pages.js",
               "node_modules/masonry-layout/dist/masonry.pkgd.min.js",
               "node_modules/isotope-layout/dist/isotope.pkgd.min.js",
               "node_modules/imagesloaded/imagesloaded.pkgd.js",
@@ -55,12 +50,10 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ]
+              "fileReplacements": [{
+                "replace": "src/environments/environment.ts",
+                "with": "src/environments/environment.prod.ts"
+              }]
             }
           }
         },
@@ -91,7 +84,6 @@
             "scripts": [
               "node_modules/scrollreveal/dist/scrollreveal.js",
               "node_modules/echarts/dist/echarts.min.js",
-              "src/app/@pages/assets/javascript/pages.js",
               "node_modules/masonry-layout/dist/masonry.pkgd.min.js",
               "node_modules/isotope-layout/dist/isotope.pkgd.min.js",
               "node_modules/imagesloaded/imagesloaded.pkgd.js",
@@ -105,22 +97,14 @@
               "src/assets/plugins/font-awesome/css/font-awesome.min.css",
               "src/assets/plugins/codrops-stepsform/css/component.css"
             ],
-            "assets": [
-              "src/assets",
-              "src/favicon.ico"
-            ]
+            "assets": ["src/assets", "src/favicon.ico"]
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -140,12 +124,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": ["e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**"]
           }
         }
       }

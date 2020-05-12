@@ -2,12 +2,15 @@
   padding: 30px;
   display: flex;
   flex-direction: column;
-  background-color: rgb(232, 229, 225)
+}
+
+.user-search {
+  display: flex;
+  align-items: center;
 }
 
 .header-options {
   padding: 30px 0;
-  background-color: rgb(248, 248, 248);
   margin: 0;
 
   input {
@@ -42,8 +45,7 @@
 }
 
 .table-row:hover {
-  background-color: #f8f8f8;
-  // color: white;
+  background: #f8f8f8 !important;
   cursor: pointer;
 }
 

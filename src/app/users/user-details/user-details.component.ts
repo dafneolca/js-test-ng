@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UsersService } from '../../services/users.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { IUser } from '../models/user.model';
+import { faTrashAlt, faEnvelope, faPhone, faUserAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-user-details',
@@ -15,6 +16,11 @@ export class UserDetailsComponent implements OnInit {
   deleting: boolean = false;
   postStatus: number;
   modalRef: BsModalRef;
+
+  faTrashAlt = faTrashAlt;
+  faEnvelope = faEnvelope;
+  faPhone = faPhone;
+  faUserAlt = faUserAlt;
 
   constructor(private route: ActivatedRoute, private router: Router, private usersService: UsersService, private modalService: BsModalService) {}
 

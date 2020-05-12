@@ -1,26 +1,26 @@
-<div class="dashboard page-container">
-  <div class="dashboard-header">
-    <h2>
-      <fa-icon [icon]="faUsers"></fa-icon> Users
-    </h2>
-    <div class="row header-options">
-      <div class="col">
-        <input placeholder="Search for user..." type="text" [(ngModel)]="userSearch" />
-        <fa-icon class="search-icon" [icon]="faSearch"></fa-icon>
-        <button class="btn btn-secondary" (click)="clearFilter()" [disabled]="!userSearch">Clear</button>
-      </div>
-      <div class="col">
-        <div class="new-user">
-          <button class="btn btn-primary" (click)="onCreateNewUser()">
-            <fa-icon [icon]="faPlusCircle"></fa-icon> New User
-          </button>
-        </div>
+<div class="dashboard-header">
+  <h2>
+    <fa-icon [icon]="faUsers"></fa-icon> Users
+  </h2>
+  <div class="row header-options">
+    <div class="col user-search">
+      <input placeholder="Search for user..." type="text" [(ngModel)]="userSearch" />
+      <fa-icon class="search-icon" [icon]="faSearch"></fa-icon>
+      <button class="btn btn-secondary" (click)="clearFilter()" [disabled]="!userSearch">Clear</button>
+    </div>
+    <div class="col">
+      <div class="new-user">
+        <button class="btn btn-primary" (click)="onCreateNewUser()">
+          <fa-icon [icon]="faPlusCircle"></fa-icon> New User
+        </button>
       </div>
     </div>
   </div>
+</div>
+<div class="dashboard page-container">
 
   <div class="table">
-    <table class="table" matSort (matSortChange)="sortData($event)">
+    <table class="table user-container" matSort (matSortChange)="sortData($event)">
       <thead>
         <tr>
           <th mat-sort-header="id" scope="col">ID</th>
@@ -32,10 +32,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="
+        <tr class="table-row" *ngFor="
             let user of userData | userFilter: { id: userSearch, first_name: userSearch, last_name: userSearch, email: userSearch }
               | paginate: { itemsPerPage: uItemsPerPage, currentPage: page, totalItems: uTotalItems }
-          " class="table-row" (click)="seeDetails(user)">
+          " (click)="seeDetails(user)">
           <th scope="row">{{ user.id }}</th>
           <td>{{ user.first_name }}</td>
           <td>{{ user.last_name }}</td>

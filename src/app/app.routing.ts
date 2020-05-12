@@ -4,18 +4,6 @@ import { UserDetailsComponent } from './users/user-details/user-details.componen
 import { UserNewComponent } from './users/user-new/user-new.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-//Layouts
-import {
-  CondensedComponent,
-  BlankComponent,
-  CorporateLayout,
-  SimplyWhiteLayout,
-  ExecutiveLayout,
-  CasualLayout,
-  BlankCasualComponent,
-  BlankCorporateComponent,
-  BlankSimplywhiteComponent
-} from './@pages/layouts';
 
 export const AppRoutes: Routes = [
   { path: '', redirectTo: 'users', pathMatch: 'full' },
@@ -36,40 +24,4 @@ export const AppRoutes: Routes = [
     component: UserEditComponent
   },
   { path: '**', component: PageNotFoundComponent }
-
-  // {
-  //   path: '',
-  //   data: {
-  //       breadcrumb: 'Home'
-  //   },
-  //   component: CondensedComponent
-  // },
-  // {
-  //   path: 'casual',
-  //   data: {
-  //       breadcrumb: 'Home'
-  //   },
-  //   component: CasualLayout
-  // },
-  // {
-  //   path: 'executive',
-  //   data: {
-  //       breadcrumb: 'Home'
-  //   },
-  //   component: ExecutiveLayout
-  // },
-  // {
-  //   path: 'simplywhite',
-  //   data: {
-  //       breadcrumb: 'Home'
-  //   },
-  //   component: SimplyWhiteLayout
-  // },
-  // {
-  //   path: 'corporate',
-  //   data: {
-  //       breadcrumb: 'Home'
-  //   },
-  //   component: CorporateLayout
-  // },
 ];

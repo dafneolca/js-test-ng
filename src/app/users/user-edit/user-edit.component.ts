@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from '../../services/users.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { IUser } from '../models/user.model';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-user-edit',
@@ -16,6 +17,8 @@ export class UserEditComponent implements OnInit {
 
   newUserForm: FormGroup;
   postStatus: number;
+
+  faEdit = faEdit;
 
   constructor(private route: ActivatedRoute, private router: Router, private usersService: UsersService, private modalService: BsModalService) {}
 

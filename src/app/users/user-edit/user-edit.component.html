@@ -1,3 +1,8 @@
+<div class="dashboard-header">
+  <h2>
+    <fa-icon [icon]="faEdit"></fa-icon> Edit User
+  </h2>
+</div>
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a routerLink="/users">Users</a></li>
@@ -5,39 +10,39 @@
   </ol>
 </nav>
 <div *ngIf="newUserForm && !postStatus" class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-10 col-md-4">
-      <h1>Edit {{user.first_name}} {{user.last_name}}</h1>
-      <img src={{user.avatar}} alt="profile pic" class="img-responsive">
-    </div>
-    <div class="col-xs-12 col-sm-10 col-md-4">
-      <form [formGroup]="newUserForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-          <label for="first-name">First Name</label>
-          <input type="text" id="first-name" class="form-control" formControlName="first-name" />
-          <span *ngIf="!newUserForm.get('first-name').valid && newUserForm.get('first-name').touched"
-            class="help-block">Please enter a first name</span>
-        </div>
-        <div class="form-group">
-          <label for="last-name">Last Name</label>
-          <input type="text" id="last-name" class="form-control" formControlName="last-name" />
-          <span *ngIf="!newUserForm.get('last-name').valid && newUserForm.get('last-name').touched"
-            class="help-block">Please enter a last name</span>
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="text" id="email" class="form-control" formControlName="email" />
-          <span *ngIf="!newUserForm.get('email').valid && newUserForm.get('email').touched" class="help-block">Please
-            enter a valid email</span>
-        </div>
-        <button class="btn btn-outline-secondary" (click)="onCancel()">Cancel</button>
-        <button class="btn btn-primary" type="submit" [disabled]="!newUserForm.valid">Save</button>
-      </form>
+  <div class="user-container card">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-md-4">
+        <h1>{{user.first_name}} {{user.last_name}}</h1>
+        <img src={{user.avatar}} alt="profile pic" class="img-responsive">
+      </div>
+      <div class="col-xs-12 col-sm-10 col-md-4">
+        <form [formGroup]="newUserForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="first-name">First Name</label>
+            <input type="text" id="first-name" class="form-control" formControlName="first-name" />
+            <span *ngIf="!newUserForm.get('first-name').valid && newUserForm.get('first-name').touched"
+              class="help-block">Please enter a first name</span>
+          </div>
+          <div class="form-group">
+            <label for="last-name">Last Name</label>
+            <input type="text" id="last-name" class="form-control" formControlName="last-name" />
+            <span *ngIf="!newUserForm.get('last-name').valid && newUserForm.get('last-name').touched"
+              class="help-block">Please enter a last name</span>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" id="email" class="form-control" formControlName="email" />
+            <span *ngIf="!newUserForm.get('email').valid && newUserForm.get('email').touched" class="help-block">Please
+              enter a valid email</span>
+          </div>
+          <button class="btn btn-outline-secondary" (click)="onCancel()">Cancel</button>
+          <button class="btn btn-primary" type="submit" [disabled]="!newUserForm.valid">Save</button>
+        </form>
+      </div>
     </div>
   </div>
 </div>
-
-
 <div *ngIf="postStatus===200">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">

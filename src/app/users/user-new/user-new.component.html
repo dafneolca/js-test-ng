@@ -1,3 +1,8 @@
+<div class="dashboard-header">
+  <h2>
+    <fa-icon [icon]="faUserPlus"></fa-icon> New User
+  </h2>
+</div>
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a routerLink="/users">Users</a></li>
@@ -5,29 +10,30 @@
   </ol>
 </nav>
 <div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-10 col-md-4" *ngIf="!postStatus">
-      <h1>Add a new user</h1>
+  <div class="ro">
+    <div class="col-xs-12 col-sm-10 col-md-4 user-container card" *ngIf="!postStatus">
+      <h1>Add New User</h1>
       <form [formGroup]="newUserForm" (ngSubmit)="onSubmit()" *ngIf="!postStatus">
         <div class="form-group">
           <label for="first-name">First Name</label>
           <input type="text" id="first-name" class="form-control" formControlName="first-name" />
-          <span *ngIf="!newUserForm.get('first-name').valid && newUserForm.get('first-name').touched"
-            class="help-block">Please enter a first name</span>
+          <label *ngIf="!newUserForm.get('first-name').valid && newUserForm.get('first-name').touched"
+            class="help-block">Please enter a first name</label>
         </div>
         <div class="form-group">
           <label for="last-name">Last Name</label>
           <input type="text" id="last-name" class="form-control" formControlName="last-name" />
-          <span *ngIf="!newUserForm.get('last-name').valid && newUserForm.get('last-name').touched"
-            class="help-block">Please enter a last name</span>
+          <label *ngIf="!newUserForm.get('last-name').valid && newUserForm.get('last-name').touched"
+            class="help-block">Please enter a last name</label>
         </div>
         <div class="form-group">
           <label for="email">Email</label>
           <input type="text" id="email" class="form-control" formControlName="email" />
-          <span *ngIf="!newUserForm.get('email').valid && newUserForm.get('email').touched" class="help-block">Please
-            enter a valid email</span>
+          <label *ngIf="!newUserForm.get('email').valid && newUserForm.get('email').touched" class="help-block">Please
+            enter a valid email</label>
         </div>
         <button class="btn btn-primary" type="submit" [disabled]="!newUserForm.valid">Submit</button>
+        <button class="btn btn-outline-secondary" routerLink="/users">Cancel</button>
       </form>
     </div>
     <div *ngIf="postStatus===201">

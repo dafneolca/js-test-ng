@@ -1,1 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  background: #f0f0f0 !important;
+}
+
+.breadcrumb {
+  background-color: transparent !important;
+}
+
+.btn {
+  margin: 5px !important;
+}
+
+.user-container {
+  margin: auto;
+  border: 1px solid gray;
+  padding: 30px;
+  -webkit-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75) !important;
+  -moz-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75) !important;
+  box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75) !important;
+}
+
+
+.dashboard-header {
+  background-color: #323237;
+  color: #85858e;
+  padding: 20px;
+}

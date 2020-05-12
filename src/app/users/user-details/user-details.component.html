@@ -1,3 +1,8 @@
+<div class="dashboard-header">
+  <h2>
+    <fa-icon [icon]="faUserAlt"></fa-icon> <span *ngIf="user">{{user.first_name}} {{user.last_name}}</span>
+  </h2>
+</div>
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a routerLink="/users">Users</a></li>
@@ -5,22 +10,28 @@
   </ol>
 </nav>
 <div *ngIf="user" class="container">
-
-
-  <div class="row">
-    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <img src={{user.avatar}} alt="profile pic" class="img-responsive">
-    </div>
-    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <h1>{{user.first_name}} {{user.last_name}}</h1>
-      <p>{{user.email}}</p>
-    </div>
-    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <button class="btn btn-danger" (click)="openModal(template)">Delete User</button>
+  <div class="user-container card">
+    <div class="row">
+      <div class="col-xs-3 col-md-2">
+        <img src={{user.avatar}} alt="profile pic" class="img-responsive">
+      </div>
+      <div class="col-xs-6 col-md-4">
+        <h3>{{user.first_name}} {{user.last_name}}</h3>
+        <p>
+          <fa-icon [icon]="faPhone"></fa-icon> +1 (808) 956 - 5288
+        </p>
+        <p>
+          <fa-icon [icon]="faEnvelope"></fa-icon> {{user.email}}
+        </p>
+      </div>
     </div>
   </div>
+  <div class="button-div-container">
+    <button class="btn btn-danger" (click)="openModal(template)">
+      <fa-icon [icon]="faTrashAlt"></fa-icon> Delete User
+    </button>
+  </div>
 </div>
-
 <ng-template #template>
   <div class="modal-header">
     <h4 class="modal-title pull-left">Delete user</h4>
