@@ -16,7 +16,6 @@ export class UserDetailsComponent implements OnInit {
   deleting: boolean = false;
   postStatus: number;
   modalRef: BsModalRef;
-
   faTrashAlt = faTrashAlt;
   faEnvelope = faEnvelope;
   faPhone = faPhone;

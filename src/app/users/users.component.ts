@@ -16,17 +16,13 @@ export class UsersComponent implements OnInit {
   userData: IUser[] = [];
   filteredUserData: IUser[] = [];
   userSearch: string;
-
   uItemsPerPage: number;
   uTotalItems: number;
   totalPages: number;
   page: number = 1;
-
   statusCode: number;
-
   tableHeaders = tableHeaders;
 
-  // fa icons
   faUsers = faUsers;
   faSearch = faSearch;
   faPlusCircle = faPlusCircle;

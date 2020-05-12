@@ -1,4 +1,4 @@
-import { ITableHeaders } from './models/user.model';
+import { ITableHeaders } from './models/table.model';
 
 export const tableHeaders: ITableHeaders[] = [
   {

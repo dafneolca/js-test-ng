@@ -15,7 +15,6 @@ import { AppComponent } from './app.component';
 
 //Basic Bootstrap Modules
 import { BsDropdownModule, AccordionModule, AlertModule, ButtonsModule, CollapseModule, ProgressbarModule, TabsModule, TooltipModule, TypeaheadModule } from 'ngx-bootstrap';
-
 import { ModalModule } from 'ngx-bootstrap/modal';
 
 //Thirdparty Components / Plugins - Optional
