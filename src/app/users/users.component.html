@@ -10,7 +10,7 @@
     </div>
     <div class="col">
       <div class="new-user">
-        <button class="btn btn-primary" (click)="onCreateNewUser()">
+        <button class="btn btn-complete" (click)="onCreateNewUser()">
           <fa-icon [icon]="faPlusCircle"></fa-icon> New User
         </button>
       </div>
@@ -27,8 +27,8 @@
           <th mat-sort-header="first_name" scope="col">First Name</th>
           <th mat-sort-header="last_name" scope="col">Last Name</th>
           <th mat-sort-header="email" scope="col">Email</th>
-          <th scope="col">Picture</th>
-          <th scope="col">Actions</th>
+          <th class="center-cap" scope="col">Picture</th>
+          <th class="center-cap" scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -40,9 +40,9 @@
           <td>{{ user.first_name }}</td>
           <td>{{ user.last_name }}</td>
           <td>{{ user.email }}</td>
-          <td><img src="{{ user.avatar }}" /></td>
-          <td>
-            <button class="btn btn-primary" (click)="onEdit(user)">
+          <td class="center-cap"><img src="{{ user.avatar }}" /></td>
+          <td class="center-cap">
+            <button class="btn btn-complete" (click)="onEdit(user)">
               <fa-icon [icon]="faEdit"></fa-icon> Edit
             </button>
           </td>

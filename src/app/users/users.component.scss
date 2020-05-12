@@ -49,13 +49,29 @@
   cursor: pointer;
 }
 
+.center-cap {
+  text-align: center;
+  text-transform: capitalize;
+}
+
 .paginator {
   text-align: center;
-  padding: 10px 0;
+  padding: 15px 0;
 
   ::ng-deep {
     ul {
       padding-left: 0;
     }
+
+    a {
+      color: #212529;
+    }
   }
+}
+
+.paginator ::ng-deep .ngx-pagination .current {
+  background: #48B0F7;
+  border-radius: 4px;
+  padding-left: 9px;
+  padding-right: 9px;
 }
