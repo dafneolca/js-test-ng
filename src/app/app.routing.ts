@@ -23,5 +23,6 @@ export const AppRoutes: Routes = [
     path: 'users/:id/edit',
     component: UserEditComponent
   },
-  { path: '**', component: PageNotFoundComponent }
+  { path: 'not-found', component: PageNotFoundComponent },
+  { path: '**', redirectTo: 'not-found' }
 ];

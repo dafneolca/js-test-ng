@@ -39,6 +39,7 @@ export class UserEditComponent implements OnInit {
   getData() {
     this.usersService.getUser(this.userID).subscribe(
       res => {
+        console.log(res);
         this.user = res['data'];
       },
       err => {
@@ -54,6 +55,7 @@ export class UserEditComponent implements OnInit {
       res => {
         console.log(res);
         this.postStatus = res.status;
+        console.log(this.postStatus);
         setTimeout(() => {
           this.router.navigate(['users']);
         }, 1000);

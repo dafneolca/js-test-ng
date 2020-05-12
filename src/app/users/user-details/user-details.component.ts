@@ -37,7 +37,9 @@ export class UserDetailsComponent implements OnInit {
         this.user = res['data'];
       },
       err => {
-        console.log(err);
+        if (err.status === 404) {
+          this.router.navigate(['not-found']);
+        }
         return err;
       }
     );
