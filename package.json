@@ -45,7 +45,7 @@
     "isotope-layout": "^3.0.6",
     "mandrill-api": "^1.0.45",
     "masonry-layout": "^4.2.2",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "ng-scrollreveal": "^2.2.0",
     "ngx-bootstrap": "^2.0.5",
     "ngx-echarts": "^3.2.0",
